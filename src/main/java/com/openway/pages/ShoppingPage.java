@@ -44,5 +44,30 @@ public class ShoppingPage {
         Thread.sleep(3000);
         addToCartButton.click();
     }
+
+    public void verifyProductInCart(){
+        String actualPopupMessage = driver.findElement(By.className("modal-text")).getText();
+
+        System.out.println("popup message: " + actualPopupMessage);
+
+        if(actualPopupMessage.equalsIgnoreCase("Success add to cart")){
+            System.out.println("SYSTEM SUCCESS GIVING MESSAGE WHEN ADDING PRODUCT IN CART");
+        } else {
+            System.out.println("SYSTEM FAILED GIVING MESSAGE WHEN ADDING PRODUCT IN CART");
+        }
+    }
+
+    public int getCartTotal() {
+        String cartText = driver.findElement(By.id("cart_total")).getText();
+        return Integer.parseInt(cartText);
+    }
+
+    public void cartIncrement(int cartBeforeAdd, int cartAfterAdd) {
+        if (cartAfterAdd == cartBeforeAdd + 1) {
+            System.out.println("Cart incremented successfully.");
+        } else {
+            System.out.println("Cart increment failed.");
+        }
+    }
 }
 

@@ -26,7 +26,16 @@ public class ShoppingCartTest {
         homeShoppingPage.searchForProduct(productName);
         Thread.sleep(3000);
         homeShoppingPage.openProduct(productName);
-        homeShoppingPage.addToCart();
+        
+        int beforeCartTotal = homeShoppingPage.getCartTotal();
+        System.out.println("Cart total before adding product: " + beforeCartTotal);
 
+        Thread.sleep(3000);
+        homeShoppingPage.addToCart();
+        homeShoppingPage.verifyProductInCart();
+
+        int afterCartTotal = homeShoppingPage.getCartTotal();
+        System.out.println("Cart total after adding product: " + afterCartTotal);
+        homeShoppingPage.cartIncrement(beforeCartTotal, afterCartTotal);
     }
 }
