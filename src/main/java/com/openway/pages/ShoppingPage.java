@@ -38,6 +38,10 @@ public class ShoppingPage {
         }
     }
 
+    public String getProductTitle() {
+        return driver.findElement(By.cssSelector("h2")).getText();
+    }
+
     public void addToCart() 
     throws InterruptedException {
         WebElement addToCartButton = driver.findElement(By.cssSelector(".btn.btn-add-to-cart"));
@@ -67,6 +71,22 @@ public class ShoppingPage {
             System.out.println("Cart incremented successfully.");
         } else {
             System.out.println("Cart increment failed.");
+        }
+    }
+
+    public void openCart() {
+        WebElement cartIcon = driver.findElement(By.id("show-your-cart"));
+        cartIcon.click();
+    }
+
+    public void verifyTitleInsideCart(String expectedProductName) {
+        String actualProductTitle = driver.findElement(By.cssSelector(".product-name.limit-lines a")).getText();
+        System.out.println("Product title in cart: " + actualProductTitle);
+
+        if (actualProductTitle.contains(expectedProductName)) {
+            System.out.println("PRODUCT TITLE VERIFIED INSIDE CART");
+        } else {
+            System.out.println("FAILED TO VERIFY PRODUCT TITLE INSIDE CART");
         }
     }
 }

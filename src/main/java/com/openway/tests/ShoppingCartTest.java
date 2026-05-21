@@ -24,9 +24,11 @@ public class ShoppingCartTest {
 
         ShoppingPage homeShoppingPage = new ShoppingPage(driver);
         homeShoppingPage.searchForProduct(productName);
+        
         Thread.sleep(3000);
         homeShoppingPage.openProduct(productName);
-        
+        String actualProductTitle = homeShoppingPage.getProductTitle();
+
         int beforeCartTotal = homeShoppingPage.getCartTotal();
         System.out.println("Cart total before adding product: " + beforeCartTotal);
 
@@ -37,5 +39,9 @@ public class ShoppingCartTest {
         int afterCartTotal = homeShoppingPage.getCartTotal();
         System.out.println("Cart total after adding product: " + afterCartTotal);
         homeShoppingPage.cartIncrement(beforeCartTotal, afterCartTotal);
+
+        Thread.sleep(3000);
+        homeShoppingPage.openCart();
+        homeShoppingPage.verifyTitleInsideCart(actualProductTitle);
     }
 }
