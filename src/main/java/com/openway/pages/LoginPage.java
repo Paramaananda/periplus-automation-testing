@@ -1,24 +1,19 @@
-package com.openway;
+package com.openway.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import io.github.cdimascio.dotenv.Dotenv;
 
-public class OpenBrowser {
-    public static void main(String[] args) {
-        Dotenv dotenv = Dotenv.load();
-        WebDriver driver = new ChromeDriver();
-        
-        String url = "https://www.periplus.com/";
-        String email = dotenv.get("PERIPLUS_EMAIL");
-        String password = dotenv.get("PERIPLUS_PASSWORD");
+public class LoginPage {
+    WebDriver driver;
 
-        driver.get(url);
-        driver.manage().window().maximize();
+    public LoginPage(WebDriver driver) {
+        this.driver = driver;
+    }
+
+    public void login(String email, String password) {
         driver.findElement(By.id("nav-signin-text")).click();
-        
+
         WebElement emailField = driver.findElement(By.name("email"));
         emailField.clear();
         emailField.sendKeys(email);
