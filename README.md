@@ -183,13 +183,5 @@ mvn test
 
 ---
 
-# Notes
-
-- This project currently uses `Thread.sleep()` for synchronization.
-- Shopping cart counter behavior on Periplus differs from common e-commerce behavior for duplicate products.
-- Chrome browser and compatible ChromeDriver are required before execution.
-
----
-
 # Author
 I Putu Paramaananda Tanaya
