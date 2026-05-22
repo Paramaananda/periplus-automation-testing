@@ -28,7 +28,7 @@ public class ShoppingPage {
 
             String actualTitle = product.getText();
 
-            System.out.println("Searched Title: " + actualTitle);
+            System.out.println("Selected Product Title: " + actualTitle);
 
             if (actualTitle.contains(expectedProductName)) {
                 Thread.sleep(3000);
@@ -49,16 +49,9 @@ public class ShoppingPage {
         addToCartButton.click();
     }
 
-    public void verifySuccessAddToCartModal(){
-        String actualPopupMessage = driver.findElement(By.className("modal-text")).getText();
-
-        System.out.println("popup message: " + actualPopupMessage);
-
-        if(actualPopupMessage.equalsIgnoreCase("Success add to cart")){
-            System.out.println("SYSTEM SUCCESS GIVING MESSAGE WHEN ADDING PRODUCT IN CART");
-        } else {
-            System.out.println("SYSTEM FAILED GIVING MESSAGE WHEN ADDING PRODUCT IN CART");
-        }
+    public String getSuccessAddToCartModalMessage() {
+        return driver.findElement(By.className("modal-text"))
+            .getText();
     }
 
     public int getCartTotal() {
@@ -66,28 +59,13 @@ public class ShoppingPage {
         return Integer.parseInt(cartText);
     }
 
-    public void verifyCartIncrement(int cartBeforeAdd, int cartAfterAdd) {
-        if (cartAfterAdd == cartBeforeAdd + 1) {
-            System.out.println("Cart incremented successfully.");
-        } else {
-            System.out.println("Cart increment failed.");
-        }
-    }
-
     public void openCart() {
         WebElement cartIcon = driver.findElement(By.id("show-your-cart"));
         cartIcon.click();
     }
 
-    public void verifyTitleInsideCart(String expectedProductName) {
-        String actualProductTitle = driver.findElement(By.cssSelector(".product-name.limit-lines a")).getText();
-        System.out.println("Product title in cart: " + actualProductTitle);
-
-        if (actualProductTitle.contains(expectedProductName)) {
-            System.out.println("PRODUCT TITLE VERIFIED INSIDE CART");
-        } else {
-            System.out.println("FAILED TO VERIFY PRODUCT TITLE INSIDE CART");
-        }
+    public String getProductTitleInsideCart() {
+        return driver.findElement(By.cssSelector(".product-name.limit-lines a")).getText();
     }
 }
 
