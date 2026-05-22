@@ -34,14 +34,16 @@ public class ShoppingCartTest {
 
         Thread.sleep(3000);
         homeShoppingPage.addToCart();
-        homeShoppingPage.verifyProductInCart();
+        homeShoppingPage.verifySuccessAddToCartModal();
 
         int afterCartTotal = homeShoppingPage.getCartTotal();
         System.out.println("Cart total after adding product: " + afterCartTotal);
-        homeShoppingPage.cartIncrement(beforeCartTotal, afterCartTotal);
+        homeShoppingPage.verifyCartIncrement(beforeCartTotal, afterCartTotal);
 
         Thread.sleep(3000);
         homeShoppingPage.openCart();
         homeShoppingPage.verifyTitleInsideCart(actualProductTitle);
+
+        driver.quit();
     }
 }

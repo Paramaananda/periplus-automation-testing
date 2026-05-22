@@ -49,7 +49,7 @@ public class ShoppingPage {
         addToCartButton.click();
     }
 
-    public void verifyProductInCart(){
+    public void verifySuccessAddToCartModal(){
         String actualPopupMessage = driver.findElement(By.className("modal-text")).getText();
 
         System.out.println("popup message: " + actualPopupMessage);
@@ -66,7 +66,7 @@ public class ShoppingPage {
         return Integer.parseInt(cartText);
     }
 
-    public void cartIncrement(int cartBeforeAdd, int cartAfterAdd) {
+    public void verifyCartIncrement(int cartBeforeAdd, int cartAfterAdd) {
         if (cartAfterAdd == cartBeforeAdd + 1) {
             System.out.println("Cart incremented successfully.");
         } else {
